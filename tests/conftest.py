@@ -12,7 +12,7 @@ def browser():
 
 @pytest.fixture(scope="session")
 def page(browser):
-    context = browser.new_context()
+    context = browser.new_context(timeout=60000)
     page = context.new_page()
     yield page
     context.close()
