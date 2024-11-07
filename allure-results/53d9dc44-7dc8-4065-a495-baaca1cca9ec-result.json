@@ -1,0 +1,1 @@
+{"name": "test_pitch_deck_link_redirects_to_correct_url[chromium]", "status": "skipped", "parameters": [{"name": "browser_name", "value": "'chromium'"}], "start": 1730385241797, "stop": 1730385241797, "uuid": "bfcf34ba-cf07-4fb1-a339-48fb47a8f439", "testCaseId": "9f1249b30182edee63835e870ba4d33e", "fullName": "tests.test_navigation#test_pitch_deck_link_redirects_to_correct_url"}
