@@ -1,26 +1,47 @@
-name: Playwright Tests
+name: smoke-chrome
 on:
-  push:
-    branches: [ main, master ]
-  pull_request:
-    branches: [ main, master ]
+  workflow_dispatch:
+
 jobs:
-  playwright:
-    name: 'Playwright Tests'
+  test:
+    timeout-minutes: 60
     runs-on: ubuntu-latest
-    container:
-      image: mcr.microsoft.com/playwright/python:v1.47.0-jammy
-      options: --user 1001
     steps:
       - uses: actions/checkout@v4
+
       - name: Set up Python
-        uses: actions/setup-python@v4
+        uses: actions/setup-python@v5
         with:
-          python-version: '3.11'
+          python-version: '3.12'
+
+      - name: Install Poetry
+        run: |
+          curl -sSL https://install.python-poetry.org | python3 -
+
       - name: Install dependencies
         run: |
-          python -m pip install --upgrade pip
-          pip install -r requirements.txt
-          pip install -e .
-      - name: Run your tests
-        run: pytest
+          poetry install
+
+      - name: Install Playwright browsers (only chromium)
+        run: |
+          poetry run playwright install chromium
+
+      - name: Run tests
+        run: |
+          poetry run python -m pytest
+#        env:
+#          BASE_URL: 'https://coffee-cart.app/'
+#          PROCESSES: 'auto'
+#          TESTOMATIO: ${{ secrets.TESTOMATIO_API_KEY }}
+#          TESTOMATIO_CODE_STYLE: 'pep8'
+        continue-on-error: true
+
+#      - name: Generate Pretty Report
+#        run: |
+#          npx github-actions-ctrf test-results/report.json
+
+#      - uses: actions/upload-artifact@v4
+#        if: ${{ !cancelled() }}
+#        with:
+#          name: playwright-traces
+#          path: test-results/
