@@ -16,7 +16,7 @@ pytest-xdist = "^3.5.0"
 pytest-dotenv = "^0.5.2"
 pytestomatio = "^2.5.3"
 pytest-json-ctrf = "^0.2.3"
-ry
+
 
 log_cli = true
 log_cli_level = "INFO"
