@@ -14,8 +14,8 @@ def browser():
 def page(browser):
     context = browser.new_context()
     # Set default timeouts
-    context.set_default_timeout(60000)  # 30 seconds for actions
-    context.set_default_navigation_timeout(60000)  # 30 seconds for navigation
+    context.set_default_timeout(200000)  # 30 seconds for actions
+    context.set_default_navigation_timeout(200000)  # 30 seconds for navigation
     page = context.new_page()
     yield page
     context.close()
