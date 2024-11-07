@@ -12,7 +12,10 @@ def browser():
 
 @pytest.fixture(scope="session")
 def page(browser):
-    context = browser.new_context(timeout=60000)
+    context = browser.new_context()
+    # Set default timeouts
+    context.set_default_timeout(60000)  # 30 seconds for actions
+    context.set_default_navigation_timeout(60000)  # 30 seconds for navigation
     page = context.new_page()
     yield page
     context.close()
