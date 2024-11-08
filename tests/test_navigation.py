@@ -1,21 +1,21 @@
-# import re
-# from playwright.sync_api import Page, expect
+import re
+from playwright.sync_api import Page, expect
 # import allure
-#
-#
-# def test_pitch_deck_link_redirects_to_correct_url(page):
-#     with allure.step('open gt_protocol site'):
-#         page.goto("https://www.gt-protocol.io/")
-#     with allure.step('open pitch deck link'):
-#         with page.context.expect_page() as new_page_info:
-#             page.click("text=Pitch Deck")
-#     new_page = new_page_info.value
-#
-#     expected_url = "https://docsend.com/view/zaxagncyq87qpvyc"
-#     with allure.step('Check that pitch deck has needed url'):
-#         expect(new_page).to_have_url(expected_url)
-#
-#     new_page.close()
+
+
+def test_pitch_deck_link_redirects_to_correct_url(page):
+# with allure.step('open gt_protocol site'):
+    page.goto("https://www.gt-protocol.io/")
+# with allure.step('open pitch deck link'):
+    with page.context.expect_page() as new_page_info:
+        page.click("text=Pitch Deck")
+    new_page = new_page_info.value
+
+    expected_url = "https://docsend.com/view/zaxagncyq87qpvyc"
+    # with allure.step('Check that pitch deck has needed url'):
+    expect(new_page).to_have_url(expected_url)
+
+    new_page.close()
 #
 #
 # def test_use_cases_link_redirects_to_correct_section(page):
